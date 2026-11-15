@@ -1,20 +1,381 @@
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#030507" />
-    <meta name="description" content="Pide tu canción al DJ de Sonido Mendoza." />
-    <title>Sonido Mendoza - Peticiones</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="preload" as="image" href="/logo.webp" type="image/webp" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mendoza Sonido y DJ</title>
+<meta name="description" content="Sonido, iluminación y DJ animador para eventos en Cuernavaca y alrededores. Paquetes desde $2,700. 5 horas + 2 de regalo. Aparta con $500.">
+<meta name="theme-color" content="#0a0a0b">
+<meta property="og:title" content="Mendoza Sonido y DJ | Cuernavaca y alrededores">
+<meta property="og:description" content="Música, ambiente y diversión en tus eventos. Paquetes con 5 hrs + 2 de regalo. Aparta con $500.">
+<meta property="og:image" content="assets/img/montaje-elite.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/icon.png">
+<link rel="apple-touch-icon" href="assets/img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Los textos, precios, fotos y videos de esta página viven en contenido.js.
+     Para cambiarlos abre admin.html (el panel). Este archivo es solo la estructura. -->
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ============ MENÚ ============ -->
+<header class="nav" id="nav">
+  <a href="#inicio" class="nav__brand" aria-label="Mendoza Sonido y DJ, inicio">
+    <img src="assets/img/icon-clear.png" alt="" width="240" height="154">
+    <span><b>Mendoza</b><small>Sonido y DJ</small></span>
+  </a>
+  <nav class="nav__links" id="navLinks" aria-label="Secciones">
+    <a href="#paquetes">Paquetes</a>
+    <a href="#infantil">Infantil</a>
+    <a href="#adicionales">Adicionales</a>
+    <a href="#proceso">Cómo apartar</a>
+    <a href="#galeria">Galería</a>
+    <a href="#preguntas">Preguntas</a>
+    <a class="btn btn--wa nav__links-cta" data-wa="Hola, quiero cotizar mi evento con Mendoza Sonido y DJ." href="#"><svg class="ico"><use href="#i-wa"/></svg> Cotizar por WhatsApp</a>
+  </nav>
+  <button type="button" class="nav__search" data-search aria-label="Buscar en la página">
+    <svg class="ico"><use href="#i-search"/></svg><span>Buscar</span>
+  </button>
+  <a class="btn btn--wa btn--sm nav__cta" data-wa="Hola, quiero cotizar mi evento con Mendoza Sonido y DJ." href="#"><svg class="ico"><use href="#i-wa"/></svg> Cotizar</a>
+  <button type="button" class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span>
+  </button>
+</header>
+
+<main>
+
+<!-- ============ INICIO ============ -->
+<section class="hero" id="inicio">
+  <img class="hero__bg" id="heroBg" src="assets/img/montaje-luces.jpg" alt="">
+  <div class="wrap hero__copy">
+    <img class="hero__logo" src="assets/img/logo.png" alt="Mendoza Sonido y DJ" width="560" height="514">
+    <p class="label"><i></i> <span data-t="zona">Cuernavaca y alrededores</span></p>
+    <h1 id="heroTitle">Música, ambiente y diversión <em>en tus eventos</em></h1>
+    <p class="hero__lead" id="heroLead">Sonido profesional, iluminación y DJ animador. Con contrato, referencias y 7 horas de servicio en todos los paquetes.</p>
+
+    <button type="button" class="hero__search" data-search>
+      <svg class="ico"><use href="#i-search"/></svg>
+      <span>¿Qué buscas? Pantalla, shots, 150 personas…</span>
+    </button>
+
+    <div class="hero__cta">
+      <a class="btn btn--wa" data-wa="Hola, quiero cotizar mi evento con Mendoza Sonido y DJ." href="#">
+        <svg class="ico"><use href="#i-wa"/></svg> Cotiza tu evento
+      </a>
+      <a class="btn btn--line" href="#paquetes">Ver paquetes <span class="arrow">→</span></a>
+    </div>
+  </div>
+  <nav class="jump" id="jump" aria-label="Accesos directos"></nav>
+</section>
+
+<!-- ============ PAQUETES ============ -->
+<section class="section" id="paquetes">
+  <div class="wrap">
+    <header class="head">
+      <p class="label"><b>01</b><i></i> Paquetes</p>
+      <h2 id="paqTitle"></h2>
+    </header>
+
+    <form class="finder" id="finder" aria-label="Encuentra tu paquete">
+      <div class="finder__head">
+        <p class="finder__title">Encuentra tu paquete</p>
+        <p class="finder__hint">Marca lo que necesitas y te mostramos solo los paquetes que te sirven.</p>
+      </div>
+      <fieldset>
+        <legend><svg class="ico"><use href="#i-people"/></svg> ¿Cuántos invitados?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="inv" value="100"><span>Hasta 100</span></label>
+          <label class="opt"><input type="checkbox" name="inv" value="150"><span>101 a 150</span></label>
+          <label class="opt"><input type="checkbox" name="inv" value="180"><span>151 a 180</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><svg class="ico"><use href="#i-cal"/></svg> ¿Qué día es tu evento?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="dia" value="sab"><span>Sábado</span></label>
+          <label class="opt"><input type="checkbox" name="dia" value="sem"><span>Domingo a viernes</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><svg class="ico"><use href="#i-check"/></svg> ¿Qué quieres que incluya?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="inc" value="pantalla"><span>Pantalla</span></label>
+          <label class="opt"><input type="checkbox" name="inc" value="sub"><span>Subwoofer</span></label>
+          <label class="opt"><input type="checkbox" name="inc" value="shots"><span>Carrito de shots</span></label>
+          <label class="opt"><input type="checkbox" name="inc" value="show"><span>Show o botarga</span></label>
+          <label class="opt"><input type="checkbox" name="inc" value="palomitas"><span>Palomitas</span></label>
+        </div>
+      </fieldset>
+      <div class="finder__res">
+        <p aria-live="polite"><b id="fCount"></b> <span id="fNote">Del más sencillo al más completo.</span></p>
+        <button type="button" class="tbtn" id="fReset" hidden>Quitar filtros ×</button>
+      </div>
+    </form>
+
+    <p class="deal" id="deal"><svg class="ico"><use href="#i-clock"/></svg><span id="dealText"></span></p>
+
+    <div class="finder__empty" id="fEmpty" hidden>
+      <p><b>Ningún paquete tiene todo eso junto.</b> Quita algún filtro o escríbenos y lo armamos a tu medida.</p>
+      <a class="btn btn--wa" id="fAsk" data-wa="Hola, quiero cotizar mi evento con Mendoza Sonido y DJ." href="#"><svg class="ico"><use href="#i-wa"/></svg> Armar mi paquete</a>
+    </div>
+
+    <!-- Aquí se dibujan los grupos de paquetes y la tabla para comparar -->
+    <div id="grupos"></div>
+
+    <div class="incl">
+      <h3>Todos los paquetes incluyen</h3>
+      <ul class="always" id="incluyen"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INFANTIL ============ -->
+<section class="section section--paper kids" id="infantil">
+  <div class="wrap kids__grid" id="kids"></div>
+</section>
+
+<!-- ============ ADICIONALES ============ -->
+<section class="section" id="adicionales">
+  <div class="wrap">
+    <header class="head head--split">
+      <div>
+        <p class="label"><b>03</b><i></i> Servicios adicionales</p>
+        <h2 id="adiTitle"></h2>
+      </div>
+      <p class="head__note" id="adiNote"></p>
+    </header>
+    <div class="extras" id="extras"></div>
+    <p class="after"><a class="btn btn--line" data-wa="Hola, quiero información y precios de los servicios adicionales." href="#">Preguntar por los adicionales <span class="arrow">→</span></a></p>
+  </div>
+</section>
+
+<!-- ============ CÓMO APARTAR ============ -->
+<section class="section" id="proceso">
+  <div class="wrap">
+    <header class="head">
+      <p class="label"><b>04</b><i></i> Cómo apartar</p>
+      <h2 id="aparTitle"></h2>
+    </header>
+    <ol class="steps" id="pasos"></ol>
+    <div class="pvideos" id="pvideos"></div>
+  </div>
+</section>
+
+<!-- ============ GALERÍA ============ -->
+<section class="section" id="galeria">
+  <div class="wrap">
+    <header class="head head--split">
+      <div>
+        <p class="label"><b>05</b><i></i> Galería</p>
+        <h2 id="galTitle"></h2>
+      </div>
+      <div class="gtabs" role="tablist" aria-label="Galería">
+        <button role="tab" aria-selected="true" class="is-on" data-gtab="g-fotos">Fotos</button>
+        <button role="tab" aria-selected="false" data-gtab="g-videos">Videos</button>
+        <button role="tab" aria-selected="false" data-gtab="g-tiktok">TikTok</button>
+      </div>
+    </header>
+
+    <div class="gpanel" id="g-fotos" role="tabpanel">
+      <div class="gallery" id="gallery"></div>
+      <p class="gmore"><button type="button" class="btn btn--line" id="gMore">Ver todas las fotos <span class="arrow">↓</span></button></p>
+    </div>
+
+    <div class="gpanel" id="g-videos" role="tabpanel" hidden>
+      <div class="vnav">
+        <button id="vPrev" aria-label="Videos anteriores">←</button>
+        <button id="vNext" aria-label="Más videos">→</button>
+      </div>
+      <div class="videos" id="videos"></div>
+    </div>
+
+    <div class="gpanel" id="g-tiktok" role="tabpanel" hidden>
+      <div class="videos" id="tiktoks"></div>
+      <p class="after"><a class="btn btn--line" id="tkMore" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-tt"/></svg> Ver más en <span id="tkUser"></span> <span class="arrow">→</span></a></p>
+    </div>
+
+    <!-- Reseñas de clientes -->
+    <aside class="reviews" id="resenas"></aside>
+  </div>
+</section>
+
+<!-- ============ PREGUNTAS ============ -->
+<section class="section section--paper" id="preguntas">
+  <div class="wrap qa">
+    <header class="head">
+      <p class="label"><b>06</b><i></i> Preguntas frecuentes</p>
+      <h2 id="faqTitle"></h2>
+      <p class="head__sub">¿No encuentras la tuya? Escríbenos y te respondemos.</p>
+      <a class="btn btn--line" data-wa="Hola, tengo una duda sobre sus paquetes." href="#"><svg class="ico"><use href="#i-wa"/></svg> Preguntar por WhatsApp</a>
+    </header>
+    <div class="faq" id="faq"></div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="cta" id="contacto">
+  <div class="wrap cta__box" id="contactBox"></div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__row">
+    <a href="#inicio" class="nav__brand">
+      <img src="assets/img/icon-clear.png" alt="" width="240" height="154">
+      <span><b>Mendoza</b><small>Sonido y DJ</small></span>
+    </a>
+    <p id="footInfo"></p>
+    <p class="footer__small">© <span id="year">2026</span> Mendoza Sonido y DJ. <span id="footNote"></span></p>
+  </div>
+</footer>
+
+<!-- Botón flotante (computadora) -->
+<a class="fab" data-wa="Hola, quiero cotizar mi evento con Mendoza Sonido y DJ." href="#" aria-label="Escríbenos por WhatsApp">
+  <svg class="ico"><use href="#i-wa"/></svg>
+</a>
+
+<!-- Barra inferior (celular) -->
+<nav class="dock" id="dock" aria-label="Accesos rápidos">
+  <a href="#paquetes"><svg class="ico"><use href="#i-speaker"/></svg><span>Paquetes</span></a>
+  <a href="#adicionales"><svg class="ico"><use href="#i-star"/></svg><span>Adicionales</span></a>
+  <button type="button" data-search><svg class="ico"><use href="#i-search"/></svg><span>Buscar</span></button>
+  <a class="dock__wa" data-wa="Hola, quiero cotizar mi evento con Mendoza Sonido y DJ." href="#"><svg class="ico"><use href="#i-wa"/></svg><span>Cotizar</span></a>
+</nav>
+
+<!-- Buscador -->
+<dialog class="search" id="search" aria-label="Buscar en la página">
+  <form class="search__bar" id="sForm" role="search">
+    <svg class="ico"><use href="#i-search"/></svg>
+    <input type="search" id="sInput" placeholder="Pantalla, shots, 150 personas, anticipo…" autocomplete="off" enterkeyhint="search" aria-label="¿Qué buscas?">
+    <button type="button" class="search__close" id="sClose" aria-label="Cerrar buscador">×</button>
+  </form>
+  <div class="search__body">
+    <div id="sQuick">
+      <p class="search__h">Lo más buscado</p>
+      <ul class="search__chips">
+        <li><button type="button" data-q="pantalla">Pantalla y karaoke</button></li>
+        <li><button type="button" data-q="shots">Carrito de shots</button></li>
+        <li><button type="button" data-q="show">Shows y botargas</button></li>
+        <li><button type="button" data-q="palomitas">Palomitas</button></li>
+        <li><button type="button" data-q="infantil">Fiesta infantil</button></li>
+        <li><button type="button" data-q="150 personas">150 personas</button></li>
+        <li><button type="button" data-q="sábado">Precio en sábado</button></li>
+        <li><button type="button" data-q="apartar">Cómo apartar</button></li>
+        <li><button type="button" data-q="contrato">Contrato</button></li>
+        <li><button type="button" data-q="horas">Horas de servicio</button></li>
+      </ul>
+    </div>
+    <p class="search__h" id="sHead" hidden></p>
+    <ul class="search__list" id="sList"></ul>
+    <div class="search__none" id="sNone" hidden>
+      <p>No encontramos <b id="sTerm"></b> en la página. Pregúntanos y te respondemos.</p>
+      <a class="btn btn--wa" id="sAsk" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg> Preguntar por WhatsApp</a>
+    </div>
+  </div>
+</dialog>
+
+<!-- Ventana de cada paquete: fotos y detalles -->
+<dialog class="pview" id="packView" aria-labelledby="pvTitle">
+  <button class="lightbox__close" id="pvClose" aria-label="Cerrar">×</button>
+  <div class="pview__grid">
+    <div class="pview__media" id="pvMedia">
+      <div class="pview__strip" id="pvStrip"></div>
+      <div class="pview__bar">
+        <p id="pvCap"></p>
+        <div class="vnav" id="pvNav">
+          <button type="button" id="pvPrev" aria-label="Foto anterior">←</button>
+          <span id="pvCount">1 / 1</span>
+          <button type="button" id="pvNext" aria-label="Foto siguiente">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="pview__info">
+      <p class="label"><i></i> Paquete</p>
+      <h3 id="pvTitle"></h3>
+      <p class="pack__cap" id="pvPeople"></p>
+      <div class="pview__price" id="pvPrice"></div>
+      <ul class="pack__list" id="pvList"></ul>
+      <button type="button" class="pack__video" id="pvVideo" hidden><svg class="ico"><use href="#i-play"/></svg> Ver video del paquete</button>
+      <button type="button" class="btn btn--wa" id="pvWant"><svg class="ico"><use href="#i-wa"/></svg> Quiero este paquete</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Cotizador: paquete + adicionales -->
+<dialog class="quote" id="quote" aria-labelledby="qTitle">
+  <button class="lightbox__close" id="qClose" aria-label="Cerrar">×</button>
+  <form id="qForm">
+    <p class="label"><i></i> Tu cotización</p>
+    <h3 id="qTitle">Paquete <em id="qPack"></em> <span id="qPrice"></span></h3>
+
+    <div class="quote__fields">
+      <label for="qDate">Fecha del evento<input type="date" id="qDate"></label>
+      <label for="qGuests">Invitados<input type="number" id="qGuests" min="1" max="500" inputmode="numeric" placeholder="Ej. 120"></label>
+      <label for="qPlace" class="wide">Lugar o colonia<input type="text" id="qPlace" placeholder="Ej. Jardín en Cuernavaca" autocomplete="off"></label>
+    </div>
+    <p class="quote__day" id="qDay" aria-live="polite"></p>
+
+    <fieldset class="quote__extras">
+      <legend>¿Quieres agregar algo más? <small>Opcional</small></legend>
+      <div class="quote__grid" id="qGrid"></div>
+    </fieldset>
+
+    <div class="quote__send">
+      <p class="quote__sum" id="qSum">Solo el paquete, sin adicionales.</p>
+      <a class="btn btn--wa" id="qSend" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg> Enviar por WhatsApp</a>
+    </div>
+  </form>
+</dialog>
+
+<!-- Visor de fotos y videos -->
+<dialog class="lightbox" id="lightbox" aria-label="Foto o video ampliado">
+  <button class="lightbox__close" id="lbClose" aria-label="Cerrar">×</button>
+  <img id="lbImg" src="" alt="">
+  <video id="lbVid" controls playsinline hidden></video>
+  <div id="lbYt" class="yt" hidden></div>
+  <p id="lbCap"></p>
+</dialog>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 0 1 12 3.800Zm-3.5 3.900c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.300s1 2.7 1.1 2.900c.100.2 2 3 4.8 4.2 2.4 1 2.8.800 3.3.700.5 0 1.7-.7 1.9-1.3.200-.7.200-1.2.200-1.3-.1-.2-.3-.2-.6-.400l-1.9-.900c-.3-.1-.5-.2-.7.100l-.9 1.100c-.2.200-.3.200-.6.100-.3-.2-1.2-.5-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.4.100-.600l.400-.5.300-.500v-.500L9.3 8.100c-.2-.4-.4-.4-.6-.400h-.200Z"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M22 12a10 10 0 1 0-11.6 9.900v-7H7.900V12h2.500V9.800c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.500h-1.200c-1.2 0-1.6.8-1.6 1.600V12h2.800l-.4 2.900h-2.400v7A10 10 0 0 0 22 12Z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-tt" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M16.5 2h-3.200v13.300a2.7 2.7 0 1 1-2.7-2.700c.3 0 .5 0 .8.100V9.400a6 6 0 1 0 5.1 5.900V8.600a7.3 7.3 0 0 0 4.2 1.300V6.700a4.3 4.3 0 0 1-4.2-4.700Z"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+      <symbol id="i-dj" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
+      <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5"/></symbol>
+      <symbol id="i-people" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20a6 6 0 0 1 12 0"/><circle cx="5" cy="10" r="2"/><circle cx="19" cy="10" r="2"/><path d="M1.5 18a3.5 3.5 0 0 1 4-3.400M22.5 18a3.5 3.5 0 0 0-4-3.4"/></symbol>
+      <symbol id="i-speaker" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><circle cx="12" cy="14" r="3"/><circle cx="12" cy="7.5" r="1"/></symbol>
+      <symbol id="i-pop" viewBox="0 0 24 24"><path d="M6 10h12l-1.5 11h-9zM10 10l.500 11M14 10l-.5 11"/><path d="M6.5 10a2.5 2.5 0 0 1 2-4 3 3 0 0 1 5.5-.5 2.5 2.5 0 0 1 3.5 4.5"/></symbol>
+      <symbol id="i-bubble" viewBox="0 0 24 24"><circle cx="9" cy="14" r="5"/><circle cx="17" cy="7" r="3"/><circle cx="18.5" cy="16.5" r="1.5"/></symbol>
+      <symbol id="i-castle" viewBox="0 0 24 24"><path d="M4 21V11l2.5-4L9 11v3h6v-3l2.5-4 2.5 4v10zM10 21v-3a2 2 0 0 1 4 0v3M6.5 7V3l2 1-2 1"/></symbol>
+      <symbol id="i-mask" viewBox="0 0 24 24"><path d="M4 5c5-2 11-2 16 0v6c0 5-4 8-8 9-4-1-8-4-8-9z"/><path d="M8 10h2M14 10h2M9 14c2 2 4 2 6 0"/></symbol>
+      <symbol id="i-cart" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="8" rx="1"/><path d="M7 9V6h3v3M14 9V6h3v3"/><circle cx="8" cy="19.5" r="1.5"/><circle cx="16" cy="19.5" r="1.5"/></symbol>
+      <symbol id="i-snack" viewBox="0 0 24 24"><path d="M5 9h8l-1 12H6zM15 11h5l-1 10h-4M17 11l1-7"/><path d="M5.5 9a2 2 0 0 1 2-3 2.5 2.5 0 0 1 4 0 2 2 0 0 1 1 3"/></symbol>
+      <symbol id="i-invite" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M9 9h6v5H9zM9 9l3 2.500L15 9M11 18h2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.900 12 21 12 21Z"/><circle cx="12" cy="9.500" r="2.500"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.500v13l10.500-6.500Z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.500 4.500"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.500l2.600 5.300 5.900.900-4.300 4.100 1 5.800-5.200-2.700-5.200 2.700 1-5.800-4.300-4.100 5.900-.900Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5.500" width="16" height="14.500" rx="2"/><path d="M4 10h16M8.500 3.500v4M15.500 3.500v4"/></symbol>
+  </defs>
+</svg>
+
+<!-- contenido.js: contenido de respaldo. firebase-config.js: tu proyecto de Firebase (si está lleno,
+     cargar.js trae de ahí lo que publicaste en el panel). cargar.js arranca render.js y script.js. -->
+<script src="contenido.js"></script>
+<script src="firebase-config.js"></script>
+<script src="cargar.js"></script>
+</body>
 </html>
