@@ -8,11 +8,11 @@
 
    Mientras estén vacíos, la página usa contenido.js y el panel trabaja sin iniciar sesión. */
 window.FIREBASE_CONFIG = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyBk2r7RemqsrAWMVlWgwOwKEF7uAqOKyYM",
+  authDomain: "sonido-mendoza.firebaseapp.com",
+  databaseURL: "https://sonido-mendoza-default-rtdb.firebaseio.com",
+  projectId: "sonido-mendoza",
+  storageBucket: "sonido-mendoza.firebasestorage.app",
+  messagingSenderId: "77904377674",
+  appId: "1:77904377674:web:427ef05b94bf73cc8b33b3"
 };
