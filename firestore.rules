@@ -1,0 +1,90 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function equipos() {
+      return {
+        'admin@sonidomendoza.mx': 'actual',
+        'djmartin@sonidomendoza.mx': 'djmartin',
+        'infantil@sonidomendoza.mx': 'infantil'
+      };
+    }
+
+    function tieneEquipo() {
+      return request.auth != null && equipos().get(request.auth.token.email, '') != '';
+    }
+
+    function miEquipo() {
+      return equipos().get(request.auth.token.email, '');
+    }
+
+    function esMio(datos) {
+      return tieneEquipo() && datos.equipo == miEquipo();
+    }
+
+    function equipoDelEvento(eventoId) {
+      return get(/databases/$(database)/documents/eventos/$(eventoId)).data.get('equipo', 'actual');
+    }
+
+    function esDueno(eventoId) {
+      return tieneEquipo() && equipoDelEvento(eventoId) == miEquipo();
+    }
+
+    function codigoCorrecto(eventoId) {
+      return get(/databases/$(database)/documents/codigos/$(request.resource.data.get('codigo', '0'))).data.eventoId == eventoId;
+    }
+
+    function puedePedir(eventoId) {
+      let p = get(/databases/$(database)/documents/publico/$(eventoId)).data;
+      return p.activo == true && (p.get('pedirCodigo', true) == false || codigoCorrecto(eventoId));
+    }
+
+    function textoValido(t) {
+      return t is string && t.size() > 0 && t.size() <= 80;
+    }
+
+    match /ajustes/{equipo} {
+      allow read, write: if tieneEquipo() && miEquipo() == equipo;
+    }
+
+    match /publico/{eventoId} {
+      allow get: if true;
+      allow list: if resource.data.activo == true && resource.data.pedirCodigo == false;
+      allow create: if esMio(request.resource.data);
+      allow update: if esMio(resource.data) && esMio(request.resource.data);
+      allow delete: if esMio(resource.data);
+    }
+
+    match /codigos/{codigo} {
+      allow get: if true;
+      allow create: if esMio(request.resource.data) && codigo.matches('^[0-9]{4}$');
+      allow delete: if esMio(resource.data);
+    }
+
+    match /fondos/{eventoId} {
+      allow get: if true;
+      allow write: if esDueno(eventoId);
+    }
+
+    match /eventos/{eventoId} {
+      allow get: if true;
+      allow create: if esMio(request.resource.data);
+      allow update, delete: if esDueno(eventoId);
+
+      match /peticiones/{clave} {
+        allow read: if true;
+        allow create: if esDueno(eventoId) || (
+          puedePedir(eventoId)
+          && request.resource.data.keys().hasOnly(['artista', 'cancion', 'estado', 'creada', 'codigo'])
+          && textoValido(request.resource.data.artista)
+          && textoValido(request.resource.data.cancion)
+          && request.resource.data.estado == 'cola'
+          && request.resource.data.creada == request.time
+          && clave.size() <= 200
+        );
+        allow update, delete: if esDueno(eventoId);
+      }
+    }
+  }
+}

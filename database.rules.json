@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "sitio": {
+      ".read": true,
+      ".write": "auth != null && auth.token.email === 'TU_CORREO@ejemplo.com'"
+    }
+  }
+}

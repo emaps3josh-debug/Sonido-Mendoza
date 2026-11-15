@@ -1,0 +1,102 @@
+MENDOZA SONIDO Y DJ - PÁGINA WEB (versión 27)
+============================================
+
+QUÉ CAMBIÓ EN ESTA VERSIÓN
+- El panel (admin.html) se conecta a Firebase: pide correo y contraseña, y el botón
+  "Publicar" guarda los cambios en la base de datos. La página los muestra al instante,
+  sin subir archivos.
+- La página (index.html) lee el contenido publicado desde Firebase. Si Firebase no responde,
+  usa la última copia guardada en el navegador y, si no hay, contenido.js.
+- Mientras firebase-config.js esté vacío todo funciona como antes: la página usa contenido.js
+  y el panel descarga un archivo.
+
+============================================
+PUESTA EN MARCHA (una sola vez)
+============================================
+
+1) CREAR EL PROYECTO EN FIREBASE
+   - Entra a https://console.firebase.google.com y crea un proyecto (Analytics no hace falta).
+
+2) ACTIVAR EL ACCESO CON CORREO Y CONTRASEÑA
+   - Authentication > Comenzar > Método de acceso > Correo electrónico/contraseña > Habilitar.
+   - Authentication > Usuarios > Agregar usuario: tu correo y una contraseña.
+     Con ese correo y contraseña entrarás al panel.
+
+3) CREAR LA BASE DE DATOS
+   - Realtime Database > Crear base de datos > elige la ubicación > "modo bloqueado".
+   - Pestaña Reglas: borra lo que haya y pega el contenido de database.rules.json,
+     cambiando TU_CORREO@ejemplo.com por el correo del paso 2 (igual, en minúsculas).
+     Pulsa Publicar.
+   - Para dar permiso a otra persona, agrega su correo así:
+     "auth != null && (auth.token.email === 'uno@correo.com' || auth.token.email === 'otro@correo.com')"
+
+4) COPIAR LOS DATOS DEL PROYECTO
+   - Configuración del proyecto (engrane) > General > Tus apps > botón </> (Web) > registra la app.
+   - Firebase te muestra un bloque "firebaseConfig". Copia cada valor a firebase-config.js.
+   - Revisa que "databaseURL" venga lleno. Si no aparece, cópialo de la pantalla de
+     Realtime Database (la dirección que termina en firebaseio.com o firebasedatabase.app).
+
+5) SUBIR LA PÁGINA
+   - Sube TODOS los archivos de esta carpeta a tu repositorio de GitHub (index.html en la raíz)
+     y conecta el repositorio en Vercel. No hay que compilar nada: es una página estática
+     (en Vercel: Framework "Other", sin comando de build).
+   - Si también quieres usar Firebase Hosting: firebase.json ya viene listo
+     (firebase deploy --only hosting). Para subir solo las reglas: firebase deploy --only database.
+
+6) PRIMERA PUBLICACIÓN
+   - Abre tusitio.com/admin.html, entra con tu correo y contraseña y pulsa "Publicar" una vez.
+     Eso sube el contenido a Firebase. Desde ahí, cada cambio que publiques aparece en la página.
+
+============================================
+USO DIARIO DEL PANEL
+============================================
+1. Entra a tusitio.com/admin.html.
+2. Edita en la sección que necesites (se guarda solo como borrador en ese dispositivo).
+3. "Vista previa" muestra tu página con los cambios, sin publicarlos.
+4. "Publicar" los manda a Firebase: la página cambia de inmediato para todos.
+5. En Inicio > "Descargar respaldo" guardas una copia (contenido.js). Conviene hacerlo de vez
+   en cuando y reemplazar con ella el contenido.js del repositorio.
+
+QUÉ SE PUEDE EDITAR
+- Paquetes: nombre, precios, personas, etiqueta, qué incluye, fotos, video y orden.
+- Aviso de descuento, grupos, "Todos los paquetes incluyen" y tabla para comparar.
+- Paquete infantil, adicionales y tarjeta de shows y personajes.
+- Videos y TikTok de la galería (pegando el enlace), fotos y reseñas.
+- Portada, cómo apartar, preguntas frecuentes y contacto.
+- WhatsApp, teléfono, zona, redes sociales y opciones del cotizador.
+
+FOTOS
+- "Subir foto" reduce la foto y la guarda dentro del contenido. Cada foto subida así hace que
+  la página tarde más en abrir; el límite total del contenido es de 9 MB.
+- Para muchas fotos es mejor subirlas a assets/img en GitHub y escribir su ruta en el panel
+  (assets/img/mi-foto.jpg).
+
+VIDEOS
+- Pega el enlace de YouTube (también Shorts), TikTok, Instagram o Facebook.
+- TikTok: usa el enlace largo (termina en /video/ y números).
+- También acepta la ruta de un .mp4 que ya esté en assets/video.
+
+SEGURIDAD
+- Los datos de firebase-config.js no son secretos: pueden estar en GitHub.
+- Quien protege tu contenido son las reglas de la base de datos: solo el correo que pusiste
+  en ellas puede publicar. Cualquiera puede leer el contenido (es lo que se ve en la página).
+- No dejes las reglas en "modo de prueba" ni con ".write": true.
+
+SI ALGO FALLA
+- El panel dice "No se pudo conectar con Firebase": revisa firebase-config.js (sobre todo databaseURL).
+- "Este correo no tiene permiso para publicar": el correo de las reglas no coincide con el
+  de tu usuario.
+- La página no muestra un cambio: recarga; si sigue igual, revisa en la consola de Firebase
+  que Realtime Database tenga el nodo "sitio".
+
+ARCHIVOS
+- index.html          Estructura de la página.
+- contenido.js        Contenido de respaldo (se usa si Firebase no está configurado o falla).
+- firebase-config.js  Datos de tu proyecto de Firebase (hay que llenarlo).
+- cargar.js           Trae el contenido publicado y arranca la página.
+- render.js           Dibuja la página con el contenido.
+- script.js           Menú, filtros, buscador, cotizador y ventanas.
+- styles.css          Colores y diseño.
+- admin.html, admin.js, admin.css   El panel.
+- database.rules.json Reglas de la base de datos (pon tu correo antes de pegarlas).
+- firebase.json       Configuración para usar los comandos de Firebase (opcional).

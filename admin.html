@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel · Mendoza Sonido y DJ</title>
+<link rel="icon" href="assets/img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="top__brand" href="index.html" target="_blank" rel="noopener" title="Abrir la página publicada">
+    <img src="assets/img/icon-clear.png" alt="" width="240" height="154">
+    <span><b>Panel</b><small>Mendoza Sonido y DJ</small></span>
+  </a>
+  <p class="top__state" id="state" aria-live="polite">Sin cambios</p>
+  <div class="top__actions">
+    <button type="button" class="b" id="btnPreview">Vista previa</button>
+    <button type="button" class="b b--main" id="btnSave">Guardar cambios</button>
+  </div>
+</header>
+
+<!-- Acceso (solo cuando Firebase está configurado) -->
+<section class="login" id="login" hidden>
+  <form class="login__box" id="loginForm">
+    <h1>Entrar al panel</h1>
+    <p>Usa el correo y la contraseña que diste de alta en Firebase.</p>
+    <label>Correo<input type="email" id="loginMail" autocomplete="username" inputmode="email" required></label>
+    <label>Contraseña<input type="password" id="loginPass" autocomplete="current-password" required></label>
+    <button type="submit" class="b b--main">Entrar</button>
+    <button type="button" class="login__link" id="loginReset">Olvidé mi contraseña</button>
+  </form>
+  <p class="login__msg" id="loginMsg" aria-live="polite"></p>
+</section>
+
+<div class="layout">
+  <nav class="side" id="side" aria-label="Secciones del panel"></nav>
+  <main class="main" id="main"></main>
+</div>
+
+<!-- Ventana: cómo publicar los cambios -->
+<dialog class="dlg" id="dlgSave">
+  <h2>Tu archivo ya se descargó</h2>
+  <p>Se guardó <b>contenido.js</b> en tu carpeta de descargas con todos los cambios. Para que se vean en tu página:</p>
+  <ol>
+    <li>Entra a donde tienes subida la página (tu hosting).</li>
+    <li>Sube el <b>contenido.js</b> nuevo y <b>reemplaza</b> el que ya está, en la misma carpeta que <b>index.html</b>.</li>
+    <li>Abre tu página y recarga. Si no ves el cambio, recarga otra vez o ábrela en una ventana privada.</li>
+  </ol>
+  <p class="dlg__note">Solo cambia ese archivo: fotos, videos y lo demás se quedan como están.</p>
+  <button type="button" class="b b--main" id="dlgSaveOk">Entendido</button>
+</dialog>
+
+<input type="file" id="fileImport" accept=".js,.json,application/javascript,application/json" hidden>
+
+<!-- contenido.js trae el contenido de respaldo; firebase-config.js, los datos de tu proyecto de Firebase;
+     render.js se carga solo por su función que reconoce enlaces de video -->
+<script src="contenido.js"></script>
+<script src="firebase-config.js"></script>
+<script src="render.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
